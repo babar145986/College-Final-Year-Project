@@ -1,0 +1,188 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="bg-primary p-3"> Projects Report
+                        <button class="btn btn-success" style="margin-left: 750px;" data-toggle="modal" data-target="#modal-default">
+                            Submit Project
+                        </button>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+                        <section class="content">
+                            <div class="container-fluid">
+                                <!-- Small boxes (Stat box) -->
+                                <div class="row">
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-secondary">
+                                            <div class="inner">
+                                                <h4 class="text-center"> Total Projects </p>
+                                                    <hr>
+                        
+                                                    <h2 class="text-center">{{ project_count }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h4 class="text-center"> Completed </p>
+                                                    <hr>
+                                                    <h2 class="text-center">{{ completed_count }}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-maroon">
+                                            <div class="inner">
+                                                <h4 class="text-center"> Pending </p>
+                                                    <hr>
+                        
+                                                    <h2 class="text-center">{{ pending_count }} </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-lg-3 col-6">
+                                        <!-- small box -->
+                                        <div class="small-box bg-gradient-info">
+                                            <div class="inner">
+                                                <h4 class="text-center"> Out Of Date </p>
+                                                    <hr>
+                        
+                                                    <h2 class="text-center"> {{ expired_count }} </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./col -->
+                                </div>
+                        </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    </div>
+                    <!-- ./wrapper -->
+
+                    <!-- Main content -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table table-hover">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Project Title</th>
+                                        <th>Technology</th>
+                                        <th>Status</th>
+                                        <th>Submit Date</th>
+                                        <th style="width: 180px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in all_project %}
+                                    <tr>
+                                        <td><b>{{ i.select_student }}</b></td>
+                                        <td><b>{{ i.project_title }}</b></td>
+                                        <td><b>{{ i.programming_technology }}</b></td>
+                                        <td><b>{{ i.select_status }}</b></td>
+                                        <td><b>{{ i.date_created }}</b></td>
+                                        <td>
+                                            <a href="{% url 'project_update' i.id %}"><button class="btn btn-success btn-sm">Update</button></a>
+                                            <a href="{% url 'project_remove' i.id %}"><button class="btn btn-danger btn-sm">Remove</button></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+                    <!-- Model Form Start -->
+
+
+<div class="modal" id="modal-default">
+    <!-- form start -->
+    <form style="margin-left: 140px; margin-top: 45px;" method="POST" id="SearchForm" data-semister-url="{% url 'load_student' %}" novalidate>
+        {% csrf_token %}
+        <div class="card-body col-11 bg-white">
+            <h3>Submit Project Report</h3>
+            <hr>
+            <div class="row">
+                    <div class="col-sm-2">
+                        <label for="Subject Code">Select Course</label>
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.select_course|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="Subject Code">Select Semister/Year</label>
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.select_semister|as_crispy_field }}
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="">Select Student</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.select_student|as_crispy_field }}
+                </div>
+                <div class="col-sm-2">
+                    <label for="">Project Title</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.project_title|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="">Programming Technology</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.programming_technology|as_crispy_field }}
+                </div>
+                <div class="col-sm-2">
+                    <label for="">Date</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.date_created|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="">Status</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.select_status|as_crispy_field }}
+                </div>
+            </div><hr>
+            <button type="button" class="btn btn-warning" data-dismiss="modal fade">Close</button>
+            <button type="submit" class="btn btn-success float-right">Submit Project</button>
+        </div>
+        <!-- /.card-body -->
+    </form>
+    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'jquery/address.js' %}"></script>
+    <script src="{% static 'jquery/student.js' %}"></script>
+</div>
+
+                    <!-- Model Form End -->
+
+                    {% endblock %}

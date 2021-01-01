@@ -1,0 +1,103 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-danger p-3"> <marquee behavior="" direction=""> Click Here To Update Project </marquee> </h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- ./wrapper -->
+
+
+            <form style="margin-left: 0px; margin-top: 5px; outline: 1px solid black;" method="POST">
+                {% csrf_token %}
+                <div class="card-body col-12 bg-white">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="Subject Code">Select Course</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.select_course|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="Subject Code">Select Semmister</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.select_semister|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="">Student Name</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.select_student|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="">Project Title</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.project_title|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="">Programming Technology</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.programming_technology|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="">Date</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.date_created|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="">Status</label>
+                        </div>
+                        <div class="col-sm-4">
+                            {{ form.select_status|as_crispy_field }}
+                        </div>
+                    </div>
+                    <hr>
+                    <a href="{% url 'project_report' %}"><button type="button" class="btn btn-warning" data-dismiss="modal fade">Return</button>
+                    <button type="submit" class="btn btn-success float-right">Update Project</button>
+                </div>
+                <!-- /.card-body -->
+            </form>
+        </div>
+
+        <script>
+            var form_fields = document.getElementsByTagName('input')
+            form_fields[1].placeholder = 'Student Name';
+            form_fields[2].placeholder = 'Student Roll No';
+            form_fields[3].placeholder = 'Project Title';
+            form_fields[4].placeholder = 'Programming Technology';
+            form_fields[5].placeholder = 'Year / Month / Day';
+            form_fields[6].placeholder = 'Year / Month / Day';
+            
+            for (var fields in form_fields) {
+                form_fields[fields].className += 'form-control'
+            }
+        </script>
+
+        <!-- Model Form End -->
+
+        {% endblock %}

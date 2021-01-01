@@ -1,0 +1,79 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+                <div class="col-sm-12">
+                    <h4 class="bg-primary p-3"> <marquee behavior="" direction=""> Assign Subject Updation Page </marquee> </h4>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <!-- /.row -->
+                        </div>
+
+                    </div>
+
+    <form style="margin-left: 140px; margin-top: 0px;" method="POST" id="SearchForm"
+        data-semister-url="{% url 'load-semister' %}" novalidate>
+        {% csrf_token %}
+        <div class="card-body col-10 bg-white">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="Subject Code">Select Course</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_course|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="Subject Code">Select Semister/Year</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_semister|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="">Select Teacher</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_teacher|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="">Select_subject</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_subject|as_crispy_field }}
+                </div>
+            </div>
+            <hr>
+            <button type="button" class="btn btn-warning" data-dismiss="modal fade">Return</button>
+            <button type="submit" class="btn btn-success float-right">Update</button>
+        <!-- /.card-body -->
+    </form>
+    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'jquery/address.js' %}"></script>
+    <script src="{% static 'jquery/subjects.js' %}"></script>
+</div>
+
+                    <!-- Model Form End -->
+
+                    {% endblock %}

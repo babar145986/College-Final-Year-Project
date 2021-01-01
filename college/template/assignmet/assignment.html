@@ -1,0 +1,125 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="bg-primary p-3"> Assignments
+                        <button class="btn btn-danger" style="margin-left: 740px;" data-toggle="modal" data-target="#modal-default">
+                            Add assignment
+                        </button>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-2 mb-2">
+                <!-- SEARCH FORM --> 
+                <form class="form-inline ml-5 d-block float-right">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search Assignment" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div><br><br>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    </div>
+                    <!-- ./wrapper -->
+
+                    <!-- Main content -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table table-hover">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th style="width: 300px;">Course</th>
+                                        <th>Semester</th>
+                                        <th>Subject</th>
+                                        <th style="width: 120px;">Download</th>
+                                        <th style="width: 210px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in all_assignment %}
+                                    <tr>
+                                        <td>{{ i.select_course }}</td>
+                                        <td>{{ i.select_semister }}</td>
+                                        <td>{{ i.select_subject }}</td>
+                                        <td><a href="{{ i.upload_file.url }}"><button class="btn btn-primary btn-sm">Download</button></a></td>
+                                        <td>
+                                            <a href="{% url 'assignment_update' i.id %}"><button class="btn btn-success btn-sm">Update</button>
+                                            <a href="{% url 'assignment_remove' i.id %}"><button class="btn btn-danger btn-sm">Remove</button></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+                    <!-- Model Form Start -->
+
+
+<div class="modal" id="modal-default">
+    <!-- form start -->
+    <form method="POST" enctype="multipart/form-data" style="margin-left: 440px; margin-top: 25px;" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+        {% csrf_token %}
+        <div class="card-body col-7 bg-white">
+            <h3>Submit Assignment</h3>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="Subject Code">Select Course</label>
+                    {{ form.select_course|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="Subject Code">Select Semmister / Year</label>
+                    {{ form.select_semister|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="Subject Code">Select Subject</label>
+                    {{ form.select_subject|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="">Upload Syllabus</label>
+                    {{ form.upload_file|as_crispy_field }}
+                </div>
+            </div>
+    
+            <hr>
+            <button type="button" class="btn btn-warning" data-dismiss="modal fade">Close</button>
+            <button type="submit" class="btn btn-success float-right">Submit Assignment</button>
+        </div>
+        <!-- /.card-body -->
+    </form>
+    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'jquery/address.js' %}"></script>
+    <script src="{% static 'jquery/subjects.js' %}"></script>
+</div>
+
+                    <!-- Model Form End -->
+
+
+                    {% endblock %}

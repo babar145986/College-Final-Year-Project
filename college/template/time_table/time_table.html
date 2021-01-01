@@ -1,0 +1,104 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-gradient-info p-3"> Time Table Management 
+            <button class="btn btn-warning" style="margin-left: 620px;" data-toggle="modal" data-target="#modal-default">
+                Upload Time Table
+            </button>
+        </h4>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            </div>
+            <!-- Main content -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead class="bg-dark">
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Semister</th>
+                                <th>Date</th>
+                                <th>Download</th>
+                                <th style="width: 220px;">Action</th>
+            
+                            </tr>
+                        </thead>
+                        <tbody>
+            
+                            {% for i in all_table %}
+            
+                            <tr>
+                                <td> {{ i.select_course }} </td>
+                                <th> {{i.select_semister}} </th>
+                                <th> {{i.date_created}} </th>
+                                <th><a href="{{ i.upload_file.url }}" target="_blank"><button class="btn btn-success btn-sm">Download</button></a></th>
+                                <th>
+                                    <a href="{% url 'time_table_update' i.id %}"><button class="btn btn-primary btn-sm mr-1">Update</button></a>
+                                    <a href="{% url 'time_table_remove' i.id %}"><button class="btn btn-danger btn-sm">Delete</button></a>
+                                </th>
+                            </tr>
+            
+                            {% endfor %}
+                            {{all_student}}
+            
+                        </tbody>
+                    </table>
+                </div>
+            </div><br><br><br>
+
+            <div class="modal" id="modal-default">
+                <!-- form start -->
+                <form method="POST" style="margin-left: 440px; margin-top: 25px;" id="SearchForm"
+                    data-semister-url="{% url 'load-semister' %}" novalidate enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card-body col-7 bg-white">
+                        <h3>Submit Time Table</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Subject Code">Select Course</label>
+                                {{ form.select_course|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Subject Code">Select Semmister / Year</label>
+                                {{ form.select_semister|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="">Upload Time Table</label>
+                                {{ form.upload_file|as_crispy_field }}
+                            </div>
+                        </div>
+            
+                        <hr>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal fade">Close</button>
+                        <button type="submit" class="btn btn-success float-right">Submit</button>
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+                <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+                <script src="{% static 'jquery/address.js' %}"></script>
+                <script src="{% static 'jquery/subjects.js' %}"></script>
+            </div>
+
+            <!-- Model Form Start -->
+
+
+            {% endblock %}

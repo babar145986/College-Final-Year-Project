@@ -1,0 +1,131 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-1">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-danger p-3"><marquee> Update Teacher </marquee> </h4>
+            </div>
+        </div>
+    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+                <form role="form" action="" method="POST" style="margin-left: 0px; outline: 1px solid black; margin-top: 5px;" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body col-12 bg-white">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Select Course</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.select_course|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Select Semister</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.select_semister|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Teacher Name</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.teacher_name|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Teacher ID</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.teacher_id|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>State</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.state|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label>City</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.city|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Email ID</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.email_id|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Phone No</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.phone_no|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Qualification</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.qualification|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Experience</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.experience|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Maritual Status</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.maritual_status|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label>Date Of Birth</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.date_of_birth|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Teacher Picture</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ teacher_form.teacher_picture|as_crispy_field }}
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal fade">Close</button>
+                        <button type="submit" class="btn btn-primary float-right">Update Teacher</button>
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+            </div><br>
+            <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+            <script src="{% static 'jquery/address.js' %}"></script>
+      </div>
+            </section>
+            <!-- Model Form End -->
+
+
+        {% endblock %}

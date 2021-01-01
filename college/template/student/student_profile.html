@@ -1,0 +1,192 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+
+
+<div class="content-wrapper">
+        
+    <div class="container mt-2">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-primary p-3 text-center"> Displaying Student Details </h4>
+            </div>
+        </div><hr>
+        <div class="container">
+            <h5 style="color: darkred"> PERSONAL INFORMATION </h5>
+        </div><hr>
+        <div  class="row">
+            <div class="col-sm-2">
+                <img src="{{ student.user_picture.url }}" width="180px" class="img-thumbnail" height="220px" alt="">
+                <h4 class="text-center mt-2"> {{ student.student_name }} </h4>
+            </div>
+            <div class="col-sm-10">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <td> Student Name </td>
+                        <td> <b> {{ student.student_name }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Student CNIC </td>
+                        <td> <b> {{ student.student_cnic }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Domicile </td>
+                        <td> <b> {{ student.domicile }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Email </td>
+                        <td> <b> {{ student.email }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Phone No </td>
+                        <td> <b> {{ student.phone_no }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Date Of Birth </td>
+                        <td> <b> {{ student.date_of_birth }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Marital Status </td>
+                        <td> <b> {{ student.maritual_status }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Nationality </td>
+                        <td> <b> {{ student.Nationality }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Address </td>
+                        <td> <b> {{ student.address }} </b> </td>
+                    </tr>
+                </table>
+            </div>
+        </div><hr>
+        <div class="container">
+            <h5 style="color: darkred"> GURDIAN INFORMATION </h5>
+        </div><hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm" style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td> Father Name </td>
+                        <td> <b> {{ student.father_name }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Phone No </td>
+                        <td> <b> {{ student.phone_no }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Father CNIC </td>
+                        <td> <b> {{ student.father_cnic }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Father Occupation </td>
+                        <td> <b> {{ student.father_ocupation }} </b> </td>
+                    </tr>
+                </table>
+            </div>
+        </div><hr>
+        <div class="container">
+            <h5 style="color: darkred"> EDUCATIONAL INFORMATION </h5>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm" style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td> Institute Name </td>
+                        <td> <b> {{ student.institute_name }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Name Of Exame </td>
+                        <td> <b> {{ student.exam_name }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Total Marks </td>
+                        <td> <b> {{ student.total_marks }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Obtain Marks </td>
+                        <td> <b> {{ student.obtain_marks }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Grade </td>
+                        <td> <b> {{ student.grade }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Board Roll No </td>
+                        <td> <b> {{ student.board_roll_no }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Passing Year </td>
+                        <td> <b> {{ student.passing_year }} </b> </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        {% for i in fine %}
+        <div class="container">
+            <h5 style="color: darkred;"> STUDENT FINE INFORMATION </h5>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm" style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <th>Fine Amount</th>
+                        <td style="color: red;"><b>RS : {{ i.amount }}</b></td>
+                        
+                    </tr>
+                    <tr>
+                        <th>Reason For Fine</th>
+                        <td style="color: indigo;"><b>{{ i.reason_for_fine }}</b></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td style="color: indigo;"><b>{{ i.status }}</b></td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td style="color: indigo;"><b>{{ i.date_created }}</b></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>{% endfor %}
+
+        {% for i in project %}
+        <div class="container">
+            <h5 style="color: darkred;"> STUDENT PROJECT INFORMATION </h5>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm" style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <th>Project Title</th>
+                        <td style="color: red; width: 59%"><b>RS : {{ i.project_title }}</b></td>
+                    
+                    </tr>
+                    <tr>
+                        <th>Technology</th>
+                        <td style="color: indigo;"><b>{{ i.programming_technology }}</b></td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td style="color: indigo;"><b>{{ i.select_status }}</b></td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td style="color: indigo;"><b>{{ i.date_created }}</b></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>{% endfor %}
+    </div>
+</div>
+
+
+        {% endblock %}

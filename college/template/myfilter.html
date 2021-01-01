@@ -1,0 +1,44 @@
+{% block content %}
+{% load static %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="p-3" style="background-color: peru; color : white"> 
+                   <marquee> Filter Page </marquee>
+            </div>
+        </div>
+    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <h2 class="text-center text-info">Filter Form Given Below</h2>
+            <form action="" method="POST" id="SearchForm" data-semister-url={% url 'load-semister' %} novalidate>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit">
+            </form>
+            <div class="container">
+                <h2 class="text-center"> Attendance </h2>
+                {% for i in attendance %}
+                {{i.select_student}}
+                    {% for i in i.select_student.all %}
+                    {{ i.select_student }}
+                    {% endfor %}
+                {{i.select_course}} <br>
+                {{i.select_semister}} <br>
+                {{i.enter_marks}}
+
+                {% endfor %}
+            </div>
+            <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+            <script src="{% static 'jquery/address.js' %}"></script>
+            <script src="{% static 'jquery/subjects.js' %}"></script>
+        </div>
+        
+        {% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+
+
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-cyan p-3 text-center"> Displaying Teacher Details </h4>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <h5 style="color: darkred"> Personal Information </h5>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="{{ teacher.teacher_picture.url }}" width="180px" class="img-thumbnail" height="220px" alt="">
+                <h4 class="text-center mt-2"> {{ teacher.teacher_name }} </h4>
+            </div>
+            <div class="col-sm-10">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <td> Teacher Name </td>
+                        <td> <b> {{ teacher.teacher_name }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Email ID </td>
+                        <td> <b> {{ teacher.email_id }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Phone No </td>
+                        <td> <b> {{ teacher.phone_no }} / {{ teacher.city }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Marital Status </td>
+                        <td> <b> {{ teacher.maritual_status }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Gender </td>
+                        <td> <b> {{ teacher.gender }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Experience </td>
+                        <td> <b> {{ teacher.experience }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Date Of Birth </td>
+                        <td> <b> {{ teacher.date_of_birth }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><b> {{ teacher.address }} </b></td>
+                    </tr>
+                    <tr>
+                        <td>Father Name</td>
+                        <td><b> {{ teacher.father_name }} </b></td>
+                    </tr>
+                    <tr>
+                        <td>Gurdian Phone No</td>
+                        <td><b> {{ teacher.phone_no }} </b></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <h5 style="color: darkred"> Educational Information </h5>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm" style="width: 80%; margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td  style="width: 50%;"> Institute Name </td>
+                        <td> <b> {{ teacher.insitute }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Name Of Exame </td>
+                        <td> <b> {{ teacher.name_of_exam }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Grade / GPA </td>
+                        <td> <b> {{ teacher.grade_gpa }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Board </td>
+                        <td> <b> {{ teacher.board }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Passing Year </td>
+                        <td> <b> {{ teacher.passing_year }} </b> </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+
+        <div class="container">
+            <h5 style="color: darkred"> Subjects <b style="color : green"> ({{total_subject}}) </b> </h5>
+        </div>
+        <hr>
+        
+        <table class="table table-bordered table-sm">
+            <tr class="bg-blue">
+                <th>Course</th>
+                <th>Semister</th>
+                <th>Subject Name</th>
+            </tr>
+            {% for i in subject %}
+            <tr>
+                <td><b>{{ i.select_course }}</b></td>
+                <td><b>{{ i.select_semister }}</b></td>
+                <td><b>{{ i.select_subject }}</b></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+</div><br><br>
+
+
+        {% endblock %}

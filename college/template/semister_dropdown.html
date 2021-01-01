@@ -1,0 +1,24 @@
+<option value=""><b>======</b></option>
+{% for i in semister %}
+
+<option value="{{ i.pk }}">{{ i.semister_name }}</option>
+
+{% endfor %}
+
+{% for i in subject %}
+
+<option value="{{ i.pk }}"> {{ i.subject_name }} </option>
+
+{% endfor %}
+
+{% for i in student %}
+
+<option value="{{i.pk}}">{{ i.first_name }}</option>
+
+{% endfor %}
+
+{% for i in teacher %}
+
+<option value="{{i.pk}}">{{ i.teacher_name }}</option>
+
+{% endfor %}

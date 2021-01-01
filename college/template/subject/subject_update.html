@@ -1,0 +1,89 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-danger p-3 text-center"><marquee behavior="" direction=""> Update Subject </marquee></h4>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+                <form role="form" action="" method="POST" style="outline: 1px solid black; margin-top: 10px;" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body col-12 bg-white">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Select Course</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.select_course|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Select Semister / Year</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.select_semister|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Subject Code</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.subject_code|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Subject Name</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.subject_name|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Select Subject Type</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.select_subject_type|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Theory Marks</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.theory_marks|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Practical Marks</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.Practical_marks|as_crispy_field }}
+                            </div>
+                        </div>
+                        
+                        
+                        <hr>
+                        <a href="{% url 'subject' %}"><button type="button" class="btn btn-danger" data-dismiss="modal fade">Close</button></a>
+                        <button type="submit" class="btn btn-primary float-right">Update Subject</button>
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+                <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+                <script src="{% static 'jquery/address.js' %}"></script>
+            </div>
+      </div>
+            </section>
+            <!-- Model Form End -->
+
+
+            {% endblock %}

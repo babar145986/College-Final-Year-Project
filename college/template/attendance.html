@@ -1,0 +1,179 @@
+{% extends 'basic.html' %}
+
+    {% block content %}
+
+
+
+
+<!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <form action="courses.html">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label"> Select Date </label>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" placeholder="Enter Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label"> Select Course </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control">
+                                                <option>
+                                                    <-- Select Course -->
+                                                </option>
+                                                <option> Bechelor in computer science </option>
+                                                <option> Bechelor in economics </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label"> Select Semister / Year </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control">
+                                                <option>
+                                                    <-- Select Semister / Year -->
+                                                </option>
+                                                <option> 1 year </option>
+                                                <option> 2 year </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label"> Select Subject </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control">
+                                                <option>
+                                                    <-- Select Subject -->
+                                                </option>
+                                                <option> data structure </option>
+                                                <option> database </option>
+                                                <option> Algorithms </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modal-default">
+                                        Fetch Student
+                                    </button>
+                                </div>
+                            </form>
+                            <!-- /.row -->
+                        </div>
+
+                    </div>
+                    <!-- ./wrapper -->
+
+                    <!-- Main content -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-hover">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th><input type="checkbox"> Mark All</th>
+                                        <th>Attendance Date</th>
+                                        <th>Roll No</th>
+                                        <th>Student Name</th>
+                                        <th>Course</th>
+                                        <th>Subject</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>12-3-2020</td>
+                                        <td>5464</td>
+                                        <td>Babar Ali</td>
+                                        <td>BSC</td>
+                                        <td>Java programming</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td>12-3-2020</td>
+                                        <td>4765</td>
+                                        <td>Babar Ali</td>
+                                        <td>BSC</td>
+                                        <td>Java programming</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="float-right btn btn-primary">Mark Attendance</button>
+                        </div>
+                    </div><br>
+
+                    <!-- Model Form Start -->
+
+
+<div class="modal" id="modal-default">
+    <!-- form start -->
+    <form role="form" style="margin-left: 450px; margin-top: 30px;">
+        <div class="card-body col-7 bg-white">
+            <h3>Add New Subject</h3>
+            <hr>
+            <div class="row p-2">
+                <div class="col-sm-4">
+                    <label for="Subject Code">Subject Code</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="subject_code" placeholder="Subject Code">
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-sm-4">
+                    <label for="Subject Name">Subject Name</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="subject_name" placeholder="Subject Name">
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-sm-4">
+                    <label for="Selection"> Select Semister/Year </label>
+                </div>
+                <div class="col-sm-8">
+                    <select class="form-control">
+                        <option>
+                            <-- Select Subject Type -->
+                        </option>
+                        <option> Core </option>
+                        <option> Optional </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-sm-4">
+                    <label for="Theory Marks">Theory Marks</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="theory" placeholder="Theory Marks">
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-sm-4">
+                    <label for="Practical Marks">Practical Marks</label>
+                </div>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="Practical" placeholder="Practical Marks">
+                </div>
+            </div>
+            <hr>
+            <button type="button" class="btn btn-default" data-dismiss="modal fade">Close</button>
+            <button type="submit" class="btn btn-success float-right">Add Subject</button>
+        </div>
+        <!-- /.card-body -->
+    </form>
+</div>
+
+                    <!-- Model Form End -->
+
+                    {% endblock %}

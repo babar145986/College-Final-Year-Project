@@ -1,0 +1,53 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-success p-3 text-center"> <marquee behavior="" direction=""> Attendance Management Section </marquee> </h4>
+    </div>
+
+    <!-- Main content -->
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.col -->
+            
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Semister / Year</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in all_courses %}
+
+                        <tr style="color: darkred">
+                            <td><b> {{ i.course_code }} </b></td>
+                            <td><b> {{ i.course_name }} </b></td>
+                            <td><b> {{ i.semister_or_year }} </b></td>
+                            <td><a href="{% url 'select_course' i.id %}"><button class="btn btn-primary btn-sm">Click Here</button></a></td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div><br><br><br>
+        <!-- table Ended -->
+
+        {% endblock %}

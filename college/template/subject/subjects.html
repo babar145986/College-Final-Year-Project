@@ -1,0 +1,173 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-success p-3 text-center">  Subject Management 
+            <button style="margin-left: 690px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                Add Subject
+            </button>
+        </h4>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <!-- /.col -->
+                <div class="col-md-12">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <form method="POST" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+                                        {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="Subject Code">Select Course</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    {{ subject_form.select_course|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="Subject Code" class="mt-2">Select Semister</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    {{ subject_form.select_semister|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                                    <button type="submit" class="btn btn-danger float-right"> Search </button>
+                                    </form>
+                                    <a href="{% url 'subject' %}"><button class="btn btn-warning float-right mr-3">Reset</button></a>
+                                                                   </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- /.row -->
+                </div>
+                </div>
+            </div>
+            <!-- ./wrapper -->
+
+            <!-- Main content -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead class="bg-dark">
+                            <tr>
+                                <th>Subject Code</th>
+                                <th>Subject Name</th>
+                                <th>Subject Type</th>
+                                <th>Theory</th>
+                                <th>Practical</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for i in all_subjects %}
+
+                            <tr>
+                                <td>{{ i.subject_code }}</td>
+                                <td>{{ i.subject_name }}</td>
+                                <td>{{ i.select_subject_type }}</td>
+                                <td>{{ i.theory_marks }}</td>
+                                <td>{{ i.Practical_marks }}</td>
+                                <td style="width: 180px;">
+                                    <a href="{% url 'subject_update' i.id %}"><button class="btn btn-success btn-sm">Update</button></a>
+                                    <a href="{% url 'subject_remove' i.id %}"><button class="btn btn-danger btn-sm">Remove</button></a>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div><br>
+
+            <!-- Model Form Start -->
+
+
+            <div class="modal" id="modal-default">
+                <!-- form start -->
+                <form action="" method="POST" style="margin-left: 150px; margin-top: 20px;" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+                    {% csrf_token %}
+                    <div class="card-body col-11 bg-white">
+                        <h3>Add New Subject</h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Select Course</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.select_course|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Select Semister</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.select_semister|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Subject Code</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.subject_code|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Subject Name</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.subject_name|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Select Subject Type</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.select_subject_type|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Theory Marks</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.theory_marks|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-2">
+                                <label for="Subject Code">Practical Marks</label>
+                            </div>
+                            <div class="col-sm-4">
+                                {{ subject_form.Practical_marks|as_crispy_field }}
+                            </div>
+                        </div>
+                        <hr>
+                        <a href="{% url 'subject' %}"><button type="button" class="btn btn-danger" data-dismiss="modal">Close</button></a>
+                        <button type="submit" class="btn btn-success float-right">Add Subject</button>
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+                <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+                <script src="{% static 'jquery/address.js' %}"></script>
+            </div>
+      </div>
+            </section>
+            <!-- Model Form End -->
+
+
+            {% endblock %}

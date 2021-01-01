@@ -1,0 +1,227 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- ./wrapper -->
+        <h4 class="bg-danger p-3 text-center mt-1"> <marque> Student Update / Save Section </marquee> </h4>
+            <!-- form start -->
+            <form action="" method="POST" enctype="multipart/form-data" style="margin-left: 20px; margin-right: 20px;outline: 1px solid black;" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+                {% csrf_token %}
+                <div class="card">
+                <div class="card-header">
+                    <h3>Personal Information</h3>
+                </div>
+                <div class="card-body col-12 bg-white">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="select course"> Select Course </label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.select_course|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="select_semister">Select Semister</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.select_semister|as_crispy_field }} 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Student Name</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.student_name|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="">Student CNIC</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.student_cnic|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Domicile</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.domicile|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="">Student Email</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Phone No</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.phone_no|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="">Date Of Birth</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.date_of_birth|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Marital Statuss</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.maritual_status|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Nationality</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.Nationality|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Enter Full Address</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.address|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="Subject Code">Choose Student Picture</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ form.user_picture|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Gurdian Information</h3>
+                    </div>
+                    <div class="card-body col-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Father Name</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.father_name|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Phone No</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.phone_no|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Father CNIC</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.father_cnic|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Father Occupation</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.father_ocupation|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Monthly Income</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.monthly_income|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="card">
+                <div class="card-header">
+                        <h3>Educational Information</h3>
+                </div>
+                    <div class="card-body col-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Institute Name</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.institute_name|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Name Of Exame</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.exam_name|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Total Marks</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.total_marks|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Obtain Marks</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.obtain_marks|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Grade</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.grade|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Board Roll No</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.board_roll_no|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="Subject Code">Passing Year</label>
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form.passing_year|as_crispy_field }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger"> Cancel </button>
+                    <button type="submit" class="btn btn-primary float-right"> Add / Update Student </button>
+                </div>
+                <!-- /.card-body -->
+            </form><br>
+            <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+            <script src="{% static 'jquery/address.js' %}"></script>
+
+        <!-- Model Form End -->
+
+        {% endblock %}

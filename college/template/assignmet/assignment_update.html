@@ -1,0 +1,72 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-danger p-3">
+                    <marquee behavior="" direction=""> Click Here To Update Assignment </marquee>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- form start -->
+        <form method="POST" style="margin-left: 0px; margin-top: 0px; outline: 1px solid black;" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card-body col-12 bg-white">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Subject Code">Select Course</label>
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form.select_course|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Subject Code">Select Semmister</label>
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form.select_semister|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Subject Code">Select Subject</label>
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form.select_subject|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="">Upload Assignment</label>
+                    </div>
+                    <div class="col-sm-9">
+                        {{ form.upload_file|as_crispy_field }}
+                    </div>
+                </div>
+                <a href="{% url 'assignment' %}"><button type="button" class="btn btn-warning"
+                        data-dismiss="modal fade">Return</button></a>
+                <button type="submit" class="btn btn-success float-right">Update Project</button>
+            </div>
+            <!-- /.card-body -->
+        </form>
+</div>
+
+<!-- Model Form End -->
+
+{% endblock %}

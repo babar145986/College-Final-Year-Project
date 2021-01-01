@@ -1,0 +1,238 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-primary p-3"> All Teacher
+                    <button class="btn btn-success" style="margin-left: 800px;" data-toggle="modal"
+                        data-target="#modal-default">
+                        Add Teacher
+                    </button>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>Teacher Name</th>
+                            <th>Department</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th style="width: 100px;">Operations</th>
+                            <th style="width: 180px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in all_teachers %}
+
+                        <tr>
+                            <td>{{ i.teacher_name }}</td>
+                            <td>{{ i.select_course }}</td>
+                            <td>{{ i.email_id }}</td>
+                            <td>{{ i.gender }}</td>
+                            <td><a href="{% url 'teacher_profile' i.id %}"><button class="btn btn-warning btn-sm">Profile</button></a></td>
+                            <td>
+                                <a href="{% url 'teacher_update' i.id %}">
+                                    <button class="btn btn-success btn-sm">Update</button>
+                                </a>
+                                <a href="{% url 'teacher_remove' i.id %}">
+                                    <button class="btn btn-danger btn-sm">Remove</button>
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                   </tbody>
+                </table>
+            </div>
+        </div><br>
+
+        <!-- Model Form Start -->
+
+
+        <div class="modal" id="modal-default">
+            <!-- form start -->
+            <form action="{% url 'teacher_save' %}" enctype="multipart/form-data" method="POST" style="margin-left: 220px; margin-top: 15px;" id="SearchForm" data-semister-url={% url 'load-semister' %} novalidate>
+                {% csrf_token %}
+                
+                <div class="card-body col-11 bg-white">
+                    <h3><span class="fa fa-chalkboard-teacher"> Add Teacher </span></h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Personal Information</h4>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Teacher Name</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.teacher_name|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Emai ID</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.email_id|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Phone No</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.phone_no|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Marital Status</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.maritual_status|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Phone No</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.phone_no|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Marital Status</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.maritual_status|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Gender</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.gender|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Experience</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.experience|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Date Of Birth</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.date_of_birth|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Teacher Picture</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.teacher_picture|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.address|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Father Name</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.father_name|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Phone No</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.phone_no|as_crispy_field }}
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <h4>Educational Information</h4>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Institute Name</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.insitute|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Name Of Exame</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.name_of_exam|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Grade / GPA</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.grade_gpa|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Board</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.board|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Passing year</label>
+                        </div>
+                        <div class="col-sm-9">
+                            {{ teacher_form.passing_year|as_crispy_field }}
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal fade">Close</button>
+                    <button type="submit" class="btn btn-success float-right" data-toggle="data-dismiss">Add Teacher</button>
+                </div>
+                <!-- /.card-body -->
+            </form>
+            <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+            <script src="{% static 'jquery/address.js' %}"></script>
+        </div>
+
+        <!-- Model Form End -->
+
+
+        {% endblock %}

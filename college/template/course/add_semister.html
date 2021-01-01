@@ -1,0 +1,93 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-primary p-3"> Course Semister / Year Details
+                    <button class="btn btn-success" style="margin-left: 500px;" data-toggle="modal"
+                        data-target="#modal-default">
+                        Add Course Semisters Or Year
+                    </button>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Semister / Year</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <td>{{ i.select_course }}</td>
+                            <td>{{ i.semister_name }}</td>
+                            <td>
+                                <a href="{% url 'semister_year_remove' i.id %}"><button class="btn btn-danger btn-sm">Remove</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div><br>
+
+        <!-- Model Form Start -->
+
+
+        <div class="modal" id="modal-default">
+            <!-- form start -->
+            <form style="margin-left: 430px; margin-top: 45px;" method="POST">
+                {% csrf_token %}
+                <div class="card-body col-8 bg-white">
+                    <h3>Add Course Semister / Year</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="Subject Code">Select Course</label>
+                        </div>
+                        <div class="col-sm-8">
+                            {{ form.select_course|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="Subject Code">Semister / Year Name</label>
+                        </div>
+                        <div class="col-sm-8">
+                            {{ form.semister_name|as_crispy_field }}
+                        </div>
+                    </div><hr>
+    
+                    <button type="button" class="btn btn-warning" data-dismiss="modal fade">Close</button>
+                    <button type="submit" class="btn btn-success float-right">Add</button>
+                </div>
+                <!-- /.card-body -->
+            </form>
+        </div>
+
+        <!-- Model Form End -->
+
+        {% endblock %}

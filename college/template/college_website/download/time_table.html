@@ -1,0 +1,243 @@
+{% extends 'college_website/links.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<body>
+	<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!--************************************
+			Wrapper Start
+	*************************************-->
+	<div id="tg-wrapper" class="tg-wrapper">
+		<!--************************************
+						Header Start
+				*************************************-->
+		<header id="tg-header" class="tg-header tg-haslayout">
+			<div class="tg-topbar">
+				<div class="tg-leftbox">
+					<span id="tg-datebox" class="tg-datebox"></span>
+				</div>
+				<div class="tg-rightbox">
+					<span class="tg-tollfree">Contact: 0342-9752557</span>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="tg-logoandnoticeboard">
+							<strong class="tg-logo"><a href="index-2.html"><img
+										src="{% static 'website_style/logo/logo/logo.jpg' %}"
+										alt="University of Education and knowledge"></a></strong>
+							<div class="tg-noticeboard hidden-xs">
+								<div class="tg-textbox">
+									<span>Admission Open!</span>
+									<span>Last Date For Spring Admission 27-Sept-2017</span>
+								</div>
+								<figure><img src="{% static 'website_style/images/img-01.jpg' %}" alt="image description">
+								</figure>
+							</div>
+						</div>
+						<div class="tg-navigationarea">
+							<nav id="tg-nav" class="tg-nav">
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+										data-target="#tg-navigation" aria-expanded="false">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								<div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
+									<ul>
+										<li>
+											<a href="{% url 'front_home' %}">Home</a>
+										</li>
+										<li>
+											<a href="{% url 'news_page' %}"> News Updates </a>
+										</li>
+										<li class="menu-item-has-children current-menu-item">
+											<a href="javascript:void(0);">Download</a>
+											<ul class="sub-menu">
+												<li><a href="{% url 'show_result' %}">Result</a></li>
+												<li><a href="{% url 'show_assignment' %}">Assignment</a></li>
+												<li><a href="{% url 'show_timetable' %}">Time Table</a></li>
+												<li><a href="{% url 'show_syllabus' %}">Syllabus</a></li>
+											</ul>
+										</li>
+										<li><a href="{% url 'admission' %}">Admissions</a></li>
+										<li> <a href="{% url 'departments' %}">Departments</a>
+										<li>
+										<li> <a href="{% url 'gallery' %}">Gallery</a></li>
+										</li>
+										<li class="menu-item-has-children">
+											<a href="javascript:void(0);">About College</a>
+											<ul class="sub-menu">
+												<li><a href="{% url 'about_objective' %}">Our Objective</a></li>
+												<li><a href="{% url 'about_identity' %}">Our Identity</a></li>
+												<li><a href="{% url 'about_mission' %}">Our Mission</a></li>
+											</ul>
+										</li>
+										<li> <a href="{% url 'contact_us' %}"> Contact Us </a></li>
+										<li><a href="{% url 'login_page' %}"> Admin Login </a></li>
+									</ul>
+								</div>
+							</nav>
+							<div class="tg-searchbox">
+								<a id="tg-btnsearch" class="tg-btnsearch" href="javascript:void(0);"><i
+										class="icon-magnifier"></i></a>
+								<form class="tg-formtheme tg-formsearch">
+									<fieldset><input type="search" name="search" class="form-control"
+											placeholder="Start Your Search Here"></fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!--************************************
+						Header End
+				*************************************-->
+		<!--************************************
+				Inner Banner Start
+		*************************************-->
+		<div class="tg-innerbanner">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<ol class="tg-breadcrumb">
+							<li><a href="javascript:void(0);">home</a></li>
+							<li class="tg-active">time table</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--************************************
+				Inner Banner End
+		*************************************-->
+		<!--************************************
+				Main Start
+		*************************************-->
+		<main id="tg-main" class="tg-main tg-haslayout">
+			<div class="container">
+				<div class="row">
+					<div id="tg-twocolumns" class="tg-twocolumns">
+						<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 pull-right">
+							<div id="tg-content" class="tg-content">
+								<div class="tg-results">
+									<div class="tg-pagetitle">
+										<h2>Find Your Time Table</h2>
+									</div>
+									<div class="tg-resultcategory">
+										<ul class="tg-downloadlist">
+											{% for i in all_table %}
+											<li>
+												<div class="tg-result">
+													<span class="tg-counting">{{i.id}}</span>
+													<a class="tg-btndownloadresult" href="{{ i.upload_file.url }}"
+														target="_blank">
+														<em>download</em>
+														<i class="icon-download"></i>
+													</a>
+													<div class="tg-description">
+														<p> {{ i.select_course }} , <b> {{ i.select_semister }} </b> ,
+															{{i.date_created}} </p>
+													</div>
+												</div>
+											</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+								<nav class="tg-pagination">
+									<ul>
+										<li class="tg-prevpage"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li class="tg-active"><a href="#">5</a></li>
+										<li>...</li>
+										<li><a href="#">10</a></li>
+										<li class="tg-nextpage"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 pull-left">
+							<aside id="tg-sidebar" class="tg-sidebar">
+								<div class="tg-widget tg-widgetsearchcourse">
+									<div class="tg-widgettitle">
+										<h3>Search Result</h3>
+									</div>
+									<div class="tg-widgetcontent">
+										<form class="tg-formtheme tg-formsearchcourse">
+											<fieldset>
+												<div class="tg-inputwithicon">
+													<i class="icon-calendar-full"></i>
+													<span class="tg-select">
+														<select>
+															<option value="">Select Year*</option>
+															<option value="">2010</option>
+															<option value="">2011</option>
+															<option value="">2012</option>
+															<option value="">2013</option>
+															<option value="">2014</option>
+															<option value="">2015</option>
+															<option value="">2016</option>
+															<option value="">2017</option>
+														</select>
+													</span>
+												</div>
+												<div class="tg-inputwithicon">
+													<i class="icon-inbox"></i>
+													<span class="tg-select">
+														<select>
+															<option value="">Select Program*</option>
+															<option value="">Computer Science</option>
+															<option value="">M.A</option>
+															<option value="">M.phil</option>
+															<option value="">PHD</option>
+															<option value="">Ph.D (Physics)</option>
+														</select>
+													</span>
+												</div>
+												<div class="tg-inputwithicon">
+													<i class="icon-file-empty"></i>
+													<span class="tg-select">
+														<select>
+															<option value="">Select Major*</option>
+															<option value="">Science</option>
+															<option value="">Arts</option>
+															<option value="">Computer Science</option>
+															<option value="">Medical</option>
+															<option value="">Ph.D (Physics)</option>
+														</select>
+													</span>
+												</div>
+												<button type="submit" class="tg-btn">search now</button>
+											</fieldset>
+										</form>
+									</div>
+								</div>
+							</aside>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!--************************************
+				Main End
+		*************************************-->
+	</div>
+	<!--************************************
+			Wrapper End
+	*************************************-->
+	{% endblock %}
+</body>

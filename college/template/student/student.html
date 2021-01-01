@@ -1,0 +1,112 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% load crispy_forms_tags %}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="p-3" style="background-color: peru; color : white;"> All Students
+                    <a href="{% url 'student_form' %}"><button class="btn btn-primary float-right" style="margin-left: 5px;">Add Student</button></h4></a>
+            </div>
+        </div>
+    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+<div class="card card-default">
+                <!-- /.col -->
+                <div class="col-md-12">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <form method="POST" id="SearchForm" data-semister-url="{% url 'load-semister' %}" novalidate>
+                                        {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="Subject Code">Select Course</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    {{ form.select_course|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <label for="Subject Code" class="mt-2">Select Semester</label>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    {{ form.select_semister|as_crispy_field }}
+                                                </div>
+                                            </div>
+                                                <button type="submit" class="btn btn-danger float-right p-2 pl-4 pr-4"> Search </button>
+                                    </form>
+                                    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+                                    <script src="{% static 'jquery/address.js' %}"></script>
+                                    <a href="{% url 'student_list' %}"><button class="btn btn-dark float-right mr-3 p-2 pl-3 pr-3"> Show All </button></a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </div>
+            </div>
+            
+        <!-- Main content -->
+
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <h5 class="alert alert-success alert-sm"> {{message}} {{i.course_name}} </h5>
+        {% endif %}
+        {% if message.tags == 'error' %}
+        <h5 class="alert alert-danger"> 1 {{message}} {{i.course_name}} </h5>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th>Semister</th>
+                            <th>Domicile</th>
+                            <th style="width: 100px;">Operations</th>
+                            <th style="width: 180px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in all_student %}
+
+                        <tr>
+                            <td><b>{{ i.student_name }}</b></td>
+                            <td><b>{{ i.select_course  }} </b></td>
+                            <td><b>{{ i.select_semister }}</b></td>
+                            <td><b>{{ i.domicile }}</b></td>
+                            <td><a href="{% url 'student_profile' i.id %}">
+                                <button class="btn btn-warning btn-sm hover-black">Profile</button></td>
+                                </a>
+                            <td>
+                                <a href="{% url 'student_update' i.id %}"><button class="btn btn-success btn-sm"> Update </button>
+                                <button class="btn btn-danger btn-sm"> Remove </button>
+                            </td>
+                        </tr>
+                        
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div><br>
+
+        {% endblock %}

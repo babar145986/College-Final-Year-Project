@@ -1,0 +1,180 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="bg-gradient-purple p-3"> Student Fine List
+                            <button class="btn btn-success" style="margin-left: 710px;" data-toggle="modal" data-target="#modal-default">
+                                Add Fine
+                            </button>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-secondary">
+                                <div class="inner">
+                                    <h4 class="text-center"> Total Students </p>
+                                        <hr>
+            
+                                        <h2 class="text-center">{{ fine_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-dark">
+                                <div class="inner">
+                                    <h4 class="text-center"> Paid Fine </p>
+                                        <hr>
+                                        <h2 class="text-center">{{ fine_paid }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h4 class="text-center"> Unpaid Fine </p>
+                                        <hr>
+            
+                                        <h2 class="text-center">{{ fine_unpaid }} </h3>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-danger">
+                                <div class="inner">
+                                    <h4 class="text-center"> Out Of Date </p>
+                                        <hr>
+            
+                                        <h2 class="text-center"> {{ expired_fine }} </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    </div>
+                    <!-- ./wrapper -->
+
+                    <!-- Main content -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table table-hover">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Reason For Fine</th>
+                                        <th>Amount: RS</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th style="width: 180px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in all_fines %}
+                                    <tr>
+                                        <td>{{ i.select_student }}</td>
+                                        <td>{{ i.reason_for_fine }}</td>
+                                        <td>{{ i.amount }}</td>
+                                        <td>{{ i.status }}</td>
+                                        <td>{{ i.date_created }}</td>
+                                        <td>
+                                            <a href="{% url 'fine_update' i.id %}"><button class="btn btn-success btn-sm">Update</button></a>
+                                            <a href="{% url 'fine_remove' i.id %}"><button class="btn btn-danger btn-sm">Remove</button></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+                    <!-- Model Form Start -->
+
+
+<div class="modal" id="modal-default">
+    <!-- form start -->
+    <form style="margin-left: 150px; margin-top: 50px;" method="POST" id="SearchForm" data-semister-url="{% url 'load_student' %}" novalidate>
+        {% csrf_token %}
+        <div class="card-body col-11 bg-white">
+            <h4>Add Student Fine</h4><hr>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="Subject Code">Select Course</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.select_course|as_crispy_field }}
+                </div>
+                <div class="col-sm-2">
+                    <label for="Subject Code">Select Semister/Year</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.select_semister|as_crispy_field }}
+                </div>
+                <div class="col-sm-2">
+                    <label for="Subject Code">Select Student</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.select_student|as_crispy_field }}
+                </div>
+                <div class="col-sm-2">
+                    <label for="Subject Code">Reason For Fine</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.reason_for_fine|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="">Enter Amount</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.amount|as_crispy_field }}
+                </div>
+                <div class="col-sm-2">
+                    <label for="">Status</label>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.status|as_crispy_field }}
+                </div>
+            </div>
+            <hr>
+            <a href="{% url 'project_report' %}"><button type="button" class="btn btn-warning"
+                    data-dismiss="modal fade">Return</button>
+                <button type="submit" class="btn btn-success float-right">Update Project</button>
+        </div>
+        <!-- /.card-body -->
+    </form>
+    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'jquery/address.js' %}"></script>
+    <script src="{% static 'jquery/student.js' %}"></script>
+</div>
+
+                    <!-- Model Form End -->
+
+                    {% endblock %}

@@ -1,0 +1,239 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <h1 class="m-0 text-dark bg-primary p-3 text-center font-weight-bolder"
+            style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> | GOVT: DEGREE COLLEGE
+            EKKAGUND M.AGENCY | 
+            <a href="{% url 'logout_user' %}"><button class="btn btn-dark" style="margin-left: 0px;"> Logout </button></a><br>
+            <span>Hello ! {{request.user}}</span>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-gradient-gray">
+            <div class="inner">
+              <h4 class="text-center"> Total Users </p><hr>
+
+                <h2 class="text-center">{{ all_users }}</h3>
+                  <a href="{% url 'register_user' %}" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-maroon">
+            <div class="inner">
+              <h4 class="text-center">Teachers</p><hr>
+
+                <h2 class="text-center">{{ all_teachers }}</h3>
+                  <a href="{% url 'teacher' %}" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h4 class="text-center text-white">Students</p><hr>
+
+                <h2 class="text-center text-white">{{ all_students }}</h3>
+                  <a href="{% url 'student_list' %}" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+              <h4 class="text-center text-white">Student Fine</p><hr>
+
+                <h2 class="text-center text-white">{{ all_fines }}</h3>
+                  <a href="{% url 'student_fine' %}" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+
+      <!-- /.row -->
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h4 class="text-center">Courses</p><hr>
+
+                <h2 class="text-center">{{ all_courses }}</h3>
+                  <a href="{% url 'course' %}" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h4 class="text-center">Subjects</p><hr>
+
+                <h2 class="text-center">{{ all_subjects }}</h3>
+                  <a href="{% url 'subject' %}" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h4 class="text-center">Total Projects</p><hr>
+
+                <h2 class="text-center">{{ all_projects }}</h3>
+                  <a href="{% url 'project_report' %}" class="text-center bg-dark p-1 d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h4 class="text-center">Lecturer</p><hr>
+                <h2 class="text-center">23</h3>
+                  <a href="" class="text-white bg-dark p-1 text-center d-block"> <b> Click Here To See </b> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- ./col -->
+      <div class="row">
+        <div class="col-sm-6">
+          <h4 class="text-center bg-secondary p-2"> Add News </h4>
+          <form action="" method="POST" enctype="multipart/form-data"style="outline: 2px solid grey; padding: 14px;" novalidate>
+            {% csrf_token %}
+            <div class="form-group-lg">
+              <label for="">Select Picture</label>
+              {{ news_form.Choose_img|as_crispy_field }}
+            </div>
+            <div class="form-group-lg">
+              <label for="">News Title</label>
+              {{ news_form.event_title|as_crispy_field }}
+            </div>
+            <div class="form-group">
+              <label for="comment">News Details</label>
+              {{ news_form.event_description|as_crispy_field }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col-sm-6">
+          <h4 class="text-center bg-danger p-2"> Add Events </h4>
+          <form action="{% url 'event_save' %}" enctype="multipart/form-data" method="POST" style="outline: 2px solid grey; padding: 14px;">
+            {% csrf_token %}
+            <div class="form-group-lg">
+              <label for="">Select Picture</label>
+              {{ news_form.Choose_img|as_crispy_field }}
+            </div>
+            <div class="form-group-lg">
+              <label for="">News Title</label>
+              {{ news_form.event_title|as_crispy_field }}
+            </div>
+            <div class="form-group">
+              <label for="comment">News Details</label>
+              {{ news_form.event_description|as_crispy_field }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div><br><hr>
+
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <h4 class="bg-purple p-2"> News <span class="float-right pr-4">Total News : ( {{ news_count }} ) </span> </h4>
+          <table class="table table table-hover">
+            <thead class="bg-dark">
+              <tr>
+                <th>S.NO</th>
+                <th>Date</th>
+                <th>Event Title</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+          {% for i in all_news %}
+              <tr>
+                <td><b> {{ i.id }} </b></td>
+                <td><b> {{ i.date_created }} </b></td>
+                <td><b> {{ i.event_title }} </b></td>
+                <td style="width: 15%;"> 
+                  <a href="{% url 'delete_news' i.id %}"> <button class="btn btn-danger ml-1 btn-sm">Remove</button> </a>
+                </td>
+                </td>
+              </tr>
+          {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div><br><hr>
+
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <h4 class="bg-purple p-2"> Events <span class="float-right pr-4">Total News : ( {{ event_count }} ) </span> </h4>
+          <table class="table table table-hover">
+            <thead class="bg-dark">
+              <tr>
+                <th>S.NO</th>
+                <th>Date</th>
+                <th>Event Title</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in all_events %}
+              <tr>
+                <td><b> {{ i.id }} </b></td>
+                <td><b> {{ i.date_created }} </b></td>
+                <td><b> {{ i.event_title }} </b></td>
+                <td style="width: 15%;">
+                  <a href="{% url 'delete_event' i.id %}"> <button class="btn btn-danger ml-1 btn-sm">Delete</button> </a>
+                </td>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- ./col -->
+    </div><br><br><br><br>
+    <!-- /.row -->
+
+    {% endblock %}

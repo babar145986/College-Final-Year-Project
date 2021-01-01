@@ -1,0 +1,75 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-danger p-3"> <marquee behavior="" direction=""> Click Here To Update Users </marquee> </h4>
+            </div>
+        </div>
+    </div>                
+    
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- ./wrapper -->
+
+        <div class="col-md-12">
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <form method="POST" style="outline: 1px solid black; outline-offset: 6px;">
+                            {% csrf_token %}
+                            <div class="row p-2">
+                                {% for element in form %}
+                                <div class="col-sm-2 p-3">
+                                    {{ element.label }}
+                                </div>
+                                <div class="col-sm-4">
+                                    {{ element }}
+                                </div>
+                                {% endfor %}
+                                <button type="submit" class="btn btn-dark float-right form-control ml-4 mt-2"> Update User
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul style="list-style: none;" class="text-center">
+            <li><b> This section you can update the following things of User. If you know the user password </b></li><br>
+            <li>User First Name</li>
+            <li>User Last Name</li>
+            <li>Username</li>
+            <li>Email Address</li>
+        </ul>
+                     
+        <script>
+            var form_fields = document.getElementsByTagName('input')
+            form_fields[1].placeholder = 'First Name';
+            form_fields[2].placeholder = 'Last Name';
+            form_fields[3].placeholder = 'Username';
+            form_fields[4].placeholder = 'Email';
+            form_fields[5].placeholder = 'Enter Password';
+            form_fields[6].placeholder = 'Re Enter Password';
+
+            for (var fields in form_fields) {
+                form_fields[fields].className += 'form-control'
+            }
+        </script>
+
+        <!-- Model Form End -->
+
+
+        {% endblock %}

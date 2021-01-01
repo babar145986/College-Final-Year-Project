@@ -1,0 +1,234 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-success p-3 text-center">
+            <marquee behavior="" direction=""> {{ select_semister }} Details </marquee>
+        </h4>
+    </div>
+    <!-- Main content -->
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.col -->
+
+        </div>
+        <!-- ./wrapper -->
+
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-dark">
+                            <div class="inner">
+                                <h4 class="text-center"> Students </p>
+                                    <hr>
+                                    <h2 class="text-center">{{ student_count }}</h3>
+                            </div><hr>
+                            <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default">Student List</button>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="modal-default" style="margin-left: 25px;">
+                        <div class="container mt-3 bg-white" style="outline: 3px solid brown;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <marquee behavior="" direction=""> <h3 class="bg-info p-2 mt-2 text-center">  STUDENT LIST  </h3> </marquee>
+                                    <table class="table table-hover">
+                                        <thead class="bg-dark">
+                                            <tr>
+                                                <th>Student Roll No</th>
+                                                <th>Student Name</th>
+                                                <th>Student Email</th>
+                                                <th style="width: 160px;">Student Picture</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                    
+                                            {% for i in student %}
+                    
+                                            <tr>
+                                                <td><b> {{ i.roll_no }} </b></td>
+                                                <td><b> {{ i.first_name }} {{i.last_name}} </b></td>
+                                                <td><b> {{ i.email }} </b></td>
+                                                <td><img src="{{ i.user_picture.url }}" width="60px" class="img-rounded" height="60px"
+                                                        alt=""></td>
+                                            </tr>
+                    
+                                            {% endfor %}
+                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                    
+                            </div><br>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-maroon">
+                            <div class="inner">
+                                <h4 class="text-center"> Teachers </p>
+                                    <hr>
+
+                                    <h2 class="text-center">{{ teacher_count }} </h3>
+                            </div><hr>
+                            <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default_1">Teachers List</button>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="modal-default_1" style="margin-left: 25px;">
+                        <div class="container mt-3 bg-white" style="outline: 3px solid brown;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <marquee behavior="" direction="">
+                                        <h3 class="bg-info p-2 mt-2 text-center"> TEACHER LIST </h3>
+                                    </marquee>
+                                    <table class="table table-hover">
+                                        <thead class="bg-dark">
+                                            <tr>
+                                                <th>Teacher ID</th>
+                                                <th>Teacher Name</th>
+                                                <th>City</th>
+                                                <th>Email</th>
+                                                <th style="width: 160px;">Teacher Picture</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                    
+                                            {% for i in teacher %}
+                                    
+                                            <tr>
+                                                <td><b> {{ i.teacher_id }} </b></td>
+                                                <td><b> {{ i.teacher_name }} {{i.last_name}} </b></td>
+                                                <td><b> {{ i.city }} </b></td>
+                                                <td><b> {{ i.email_id }} </b></td>
+                                                <td><img src="{{ i.teacher_picture.url }}" width="60px" class="img-rounded" height="60px" alt=""></td>
+                                            </tr>
+                                    
+                                            {% endfor %}
+                                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                    
+                            </div><br>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-gradient-info">
+                            <div class="inner">
+                                <h4 class="text-center"> Subjects </p>
+                                    <hr>
+
+                                    <h2 class="text-center"> {{ subject_count }} </h3>
+                            </div><hr>
+                            <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default_2">Subjects List</button>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="modal-default_2" style="margin-left: 25px;">
+                        <div class="container mt-3 bg-white" style="outline: 3px solid brown;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <marquee behavior="" direction="">
+                                        <h3 class="bg-info p-2 mt-2 text-center"> SUBJECTS LIST </h3>
+                                    </marquee>
+                                    <table class="table table-hover">
+                                        <thead class="bg-dark">
+                                            <tr>
+                                                <th>Subject Code</th>
+                                                <th>Subject Name</th>
+                                                <th>Theory Marks</th>
+                                                <th style="width: 200px;">Practical Marks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                    
+                                            {% for i in subject %}
+                                    
+                                            <tr>
+                                                <td><b> {{ i.subject_code }} </b></td>
+                                                <td><b> {{ i.subject_name }} {{i.last_name}} </b></td>
+                                                <td><b> {{ i.theory_marks }} </b></td>
+                                                <td><b> {{ i.Practical_marks }} </b></td>
+                                            </tr>
+                                    
+                                            {% endfor %}
+                                    
+                                        </tbody>
+                                    </table>
+                                </div>
+                    
+                            </div><br>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-gradient-lightblue">
+                            <div class="inner">
+                                <h4 class="text-center"> Assignments </p>
+                                    <hr>
+                    
+                                    <h2 class="text-center"> {{ assignment_count }} </h3>
+                            </div><hr>
+                            <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#modal-default_3">Assignments List</button>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="modal-default_3" style="margin-left: 25px;">
+                        <div class="container mt-3 bg-white" style="outline: 3px solid brown;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <marquee behavior="" direction="">
+                                        <h3 class="bg-info p-2 mt-2 text-center"> ASSIGNMENTS LIST </h3>
+                                    </marquee>
+                                    <table class="table table-hover">
+                                        <thead class="bg-dark">
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Semister / Year</th>
+                                                <th>Subject</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                    
+                                            {% for i in assignment %}
+                                    
+                                            <tr>
+                                                <td><b> {{ i.select_course }} </b></td>
+                                                <td><b> {{ i.select_semister }} {{i.last_name}} </b></td>
+                                                <td><b> {{ i.select_subject }} </b></td>
+                                            </tr>
+                                    
+                                            {% endfor %}
+                                    
+                                        </tbody>
+                                    </table>
+                                    <button class="btn btn-danger float-right mr-2 mt-2">close</button>
+                                </div>
+                    
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+        <!-- table Ended -->
+
+        {% endblock %}

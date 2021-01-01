@@ -1,0 +1,133 @@
+{% extends 'basic.html' %}
+
+    {% block content %}
+
+
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="bg-primary p-2"> Search For Student </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form action="{% url 'search_student_real' %}" method="POST" 
+                        style="margin-left: 0px; outline: 1px solid black;">
+                            {% csrf_token %}
+                            <div class="card-body col-12 bg-white">
+                                <div class="row p-2">
+                                    <div class="col-sm-3">
+                                        <label for="">First Name / Last Name / Roll No</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="srh" placeholder="Enter First Name Or Last Name Or Roll No">
+                                    </div><br>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-right mr-2 mt-2">Search Student</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><hr>
+                <div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for k in messages %}
+                    <div class="alert alert-danger"> {{ k }} </div> </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div>
+                {% if sr %}
+                    {% for k in sr %}
+                    <div  class="row">
+            <div class="col-sm-2">
+                <img src="{{ k.user_picture.url }}" width="180px" class="img-thumbnail" height="220px" alt="">
+                <h4 class="text-center"> {{ k.first_name }} {{ k.last_name }} </h4>
+            </div>
+            <div class="col-sm-10">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <td> Roll No </td>
+                        <td> <b> {{ k.roll_no }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Student Name </td>
+                        <td> <b> {{ k.first_name }} {{ k.last_name }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Address </td>
+                        <td> <b> {{ k.address }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Email Address </td>
+                        <td> <b> {{ k.email }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Date Of Birth </td>
+                        <td> <b> {{ k.date_of_birth }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Gender </td>
+                        <td> <b> {{ k.maritual_status }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Contact Number </td>
+                        <td> <b> {{ k.phone_no }} </b> </td>
+                    </tr>
+                </table>
+            </div>
+        </div><hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <td> Course Name </td>
+                        <td> <b> {{ k.select_course }} </b> </td>
+                        <td> Semister </td>
+                        <td> <b> {{ k.select_semister }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td> Father Name </td>
+                        <td> <b> {{ k.father_name }} </b> </td>
+                        <td> Father Occupation </td>
+                        <td><b> {{ k.father_ocupation }} </b></td>
+                    </tr>
+                </table>
+            </div>
+        </div><hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        {% for i in fine %}
+                        <h4 style="color : red"> Submit the Fine last date : 12-3-2020 </h4>
+                        <td> Fine Amount </td>
+                        <td> <b> {{ i.amount }} </b> </td>
+                        <td style="width: 350px;"> Reason For Fine </td>
+                        <td style="width: 350px;"> <b> {{ i.reason_for_fine }} </b> </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 240px;"> Status </td>
+                        <td> <b> {{ i.status }} </b> </td>
+                        <td> Date </td>
+                        <td> <b> {{ i.date_created }} </b> </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div><br>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+
+
+                <!-- table Ended -->
+
+                {% endblock %}

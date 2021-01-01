@@ -1,0 +1,82 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="bg-primary p-3"> Registered Users
+                    <a href="{% url 'add_user' %}"><button style="margin-left: 760px;" type="button" class="btn btn-success">
+                            Add User
+                    </button></a>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-2 mb-2">
+        <!-- SEARCH FORM -->
+        <form class="form-inline ml-5 d-block float-right">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search User"
+                    aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div><br><br>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>User Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Super User</th>
+                            <th style="width: 150px;">Operation</th>
+                            <th style="width: 180px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in all_users %}
+                        <tr>
+                            <td>{{ i.first_name }} {{ i.last_name }} </td>
+                            <td>{{ i.username }}</td>
+                            <td>{{ i.email }}</td>
+                            <td>{{ i.is_superuser }}</td>
+                            <td><button class="btn badge-primary btn-sm">Change Status</button></td>
+                            <td>
+                                <a href="{% url 'user_update' i.id %}"><button class="btn btn-success btn-sm">Update</button></a>
+                                <a href="{% url 'user_remove' i.id %}"><button class="btn btn-danger btn-sm">Remove</button></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div><br>
+
+
+        {% endblock %}
+
+
+

@@ -1,0 +1,123 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div class="container mt-2">
+                <div class="col-sm-12">
+                    <h4 class="bg-primary p-3"> Subject Assignment Management
+                        <button class="btn btn-warning" style="margin-left: 550px;" data-toggle="modal" data-target="#modal-default">
+                            Assign Subect
+                        </button>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <!-- /.row -->
+                        </div>
+
+                    </div>
+                    <!-- ./wrapper -->
+
+                    <!-- Main content -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table table-hover">
+                                <thead class="bg-dark">
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Semister / Year</th>
+                                        <th>Teacher</th>
+                                        <th>Subject</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in all_subject %}
+                                    <tr>
+                                        <td>{{ i.select_course }}</td>
+                                        <td>{{ i.select_semister }}</td>
+                                        <td>{{ i.select_teacher }}</td>
+                                        <td>{{ i.select_subject }}</td>
+                                        <td>
+                                            <a href="{% url 'assing_subject_update' i.id %}"><button class="btn btn-success btn-sm">Update</button></a>
+                                            <a href="{% url 'assign_subject_delete' i.id %}"><button class="btn btn-danger btn-sm">Delete</button></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><br>
+
+                    <!-- Model Form Start -->
+
+
+<div class="modal" id="modal-default">
+    <!-- form start -->
+    <form style="margin-left: 440px; margin-top: 45px;" method="POST" id="SearchForm"
+        data-semister-url="{% url 'load-semister' %}" novalidate>
+        {% csrf_token %}
+        <div class="card-body col-8 bg-white">
+            <h3>Assign Subject</h3>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="Subject Code">Select Course</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_course|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="Subject Code">Select Semister/Year</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_semister|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="">Select Teacher</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_teacher|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="">Select_subject</label>
+                </div>
+                <div class="col-sm-8">
+                    {{ form.select_subject|as_crispy_field }}
+                </div>
+            </div>
+            <hr>
+            <button type="button" class="btn btn-warning" data-dismiss="modal fade">Close</button>
+            <button type="submit" class="btn btn-success float-right">Submit</button>
+        </div>
+        <!-- /.card-body -->
+    </form>
+    <script src="{% static 'jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'jquery/address.js' %}"></script>
+    <script src="{% static 'jquery/subjects.js' %}"></script>
+</div>
+
+                    <!-- Model Form End -->
+
+                    {% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-success p-3 text-center"> <marquee behavior="" direction=""> BCS Course Semisters </marquee> </h4>
+    </div>
+
+    <!-- Main content -->
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.col -->
+            
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Student Name</th>
+                            <th>Course</th>
+                            <th>Semister</th>
+                            <th>Enter Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in students %}
+
+                        <tr>
+                            <td><b> {{ i.roll_no }} </b></td>
+                            <td><b> {{ i.first_name }} {{ i.last_name }} </b></td>
+                            <td><b> {{ i.select_course }} </b></td>
+                            <td><b> {{ i.select_semister }} </b></td>
+                            <td> <input type="number"> </td>
+                        </tr>
+
+                        {% endfor %}
+                        {{all_student}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div><br><br><br>
+        <!-- table Ended -->
+
+        {% endblock %}

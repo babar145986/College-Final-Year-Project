@@ -1,0 +1,103 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="container mt-2">
+        <h4 class="bg-success p-3 text-center">
+            <marquee behavior="" direction=""> {{select_course}} </marquee>
+        </h4>
+    </div>
+
+    <!-- Main content -->
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.col -->
+
+        </div>
+        <!-- ./wrapper -->
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h4 class="text-center"> Semesters / Years  </p><hr>
+
+                            <h2 class="text-center">{{ semister_count }}</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-dark">
+                    <div class="inner">
+                        <h4 class="text-center"> Students </p><hr>
+
+                            <h2 class="text-center">{{ student_count }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-maroon">
+                    <div class="inner">
+                        <h4 class="text-center"> Teachers </p><hr>
+            
+                            <h2 class="text-center">{{ teacher_count }} </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-gradient-info">
+                    <div class="inner">
+                        <h4 class="text-center"> Subjects </p>
+                            <hr>
+            
+                            <h2 class="text-center"> {{ subject_count }} </h3>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Semesters</th>
+                            <th style="width: 280px;">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in semister %}
+
+                        <tr>
+                            <td><b> {{ i.select_course }} </b></td>
+                            <td><b> {{ i.semister_name }} </b></td>
+                            <td><a href="{% url 'semister_detail' i.id %}"><button class="btn btn-success btn-sm"><b>SEMESTER / YEAR DETAIL</b></button></a></td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div><br><br><br>
+        <!-- table Ended -->
+
+        {% endblock %}
